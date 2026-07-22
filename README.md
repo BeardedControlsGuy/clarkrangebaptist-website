@@ -17,11 +17,20 @@ The site has a friendly editing dashboard at **[app.pagescms.org](https://app.pa
 Sign in, pick this site, and you'll see two screens:
 
 - **Announcements** — add, edit, or remove the announcements shown in the
-  "What's Happening" section. Fill in the form, click **Save**, and the live
+  "Church News" section. Fill in the form, click **Save**, and the live
   site updates in about a minute.
-- **Site Links** — paste in a YouTube channel link or the church's online
-  giving (Converge Pay) link. The matching buttons appear on the website
-  automatically; leave a box empty and its button stays hidden.
+- **Site Links** — the church's Facebook, Instagram, YouTube, and online
+  giving (Converge Pay) links. Buttons and feeds across the site follow
+  these automatically; leave a box empty and its button stays hidden.
+
+### Social media syncs itself
+
+- **Facebook:** the "Latest from Facebook" box on the site shows the page's
+  timeline live — post to Facebook and it's on the website, nothing to do.
+- **YouTube:** a scheduled task checks the church's channel four times a day
+  and refreshes the "Recent Services & Sermons" section automatically.
+- **Instagram:** linked from the site (Instagram doesn't allow free feed
+  embeds, so it's a follow link).
 
 ### Giving someone editing access
 
@@ -65,6 +74,12 @@ Nothing is ever truly lost — every prior version of every file is kept
   `content/settings.json`; the Pages CMS dashboard (configured by `.pages.yml`)
   edits those files by committing to this repository, which triggers GitHub
   Pages to republish.
+- `content/latest-videos.json` is auto-written by the scheduled GitHub Action
+  in `.github/workflows/social-sync.yml` (runs `scripts/fetch_youtube.py`,
+  stdlib only). If GitHub ever pauses the schedule for repo inactivity, one
+  click on "Run workflow" in the Actions tab re-arms it.
+- Site photography: NPS public-domain images + one CC BY 3.0 photo
+  (credited in the site footer). Staff photos from the church's prior site.
 - Domain `clarkrangebaptist.org` is registered/DNS-managed at Cloudflare;
   apex + www point at GitHub Pages, and the `CNAME` file in this repo tells
   GitHub Pages which domain to answer for. **Don't delete the `CNAME` file.**

@@ -13,12 +13,14 @@
   <meta property="og:title" content="Clarkrange Baptist Church">
   <meta property="og:description" content="Where everyone is someone and Jesus Christ is Lord. Join us Sundays at 10 & 11 AM — 6250 S York Hwy, Clarkrange, TN.">
   <meta property="og:url" content="https://clarkrangebaptist.org/">
+  <meta property="og:image" content="https://clarkrangebaptist.org/images/hero.jpg">
 
-  <!-- Fonts -->
+  <!-- Fonts: classic serifs for a traditional feel -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 
+  <link rel="preload" as="image" href="images/hero.jpg">
   <link rel="stylesheet" href="styles.css">
 
   <!-- Search engine info card (structured data) -->
@@ -41,7 +43,8 @@
     },
     "sameAs": [
       "https://www.facebook.com/clarkrangebaptist",
-      "https://www.instagram.com/clarkrangebaptistchurch"
+      "https://www.instagram.com/clarkrangebaptistchurch",
+      "https://www.youtube.com/@ClarkrangeBaptistChurch"
     ]
   }
   </script>
@@ -62,6 +65,7 @@
       <ul class="nav-menu" id="nav-menu">
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
+        <li><a href="#sermons">Sermons</a></li>
         <li><a href="#ministries">Ministries</a></li>
         <li><a href="#leadership">Leadership</a></li>
         <li><a href="#visit">Visit</a></li>
@@ -77,13 +81,13 @@
     <!-- ================= HERO ================= -->
     <section class="hero" aria-label="Welcome">
       <div class="hero-inner container">
-        <p class="eyebrow reveal">Clarkrange, Tennessee &middot; On the Cumberland Plateau</p>
+        <p class="eyebrow hero-eyebrow reveal">Clarkrange, Tennessee &middot; On the Cumberland Plateau</p>
         <h1 class="reveal">Where <em>everyone</em> is someone,<br>and Jesus Christ is Lord.</h1>
         <p class="hero-sub reveal">We are a fellowship of believers coming together to declare the glory
         of the Lord and celebrate Jesus as King. Wherever you are on your journey — you belong here.</p>
         <div class="hero-cta reveal">
-          <a class="btn btn-primary" href="#visit">Plan a Visit</a>
-          <a class="btn btn-outline" href="#watch">Watch Live</a>
+          <a class="btn btn-gold" href="#visit">Plan a Visit</a>
+          <a class="btn btn-ghost" href="#watch">Watch Live</a>
         </div>
         <div class="hero-chips reveal" role="list">
           <span role="listitem"><strong>Sundays</strong> 10:00 &amp; 11:00 AM</span>
@@ -91,20 +95,15 @@
           <span role="listitem"><strong>6250 S York Hwy</strong>, Clarkrange TN</span>
         </div>
       </div>
-      <!-- Decorative rolling hills -->
-      <svg class="hero-hills" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
-        <path fill="#D8CFAF" d="M0,224 C240,140 420,260 720,200 C1020,140 1200,240 1440,180 L1440,320 L0,320 Z" opacity="0.55"/>
-        <path fill="#8FA083" d="M0,260 C280,190 520,290 820,240 C1120,190 1280,270 1440,230 L1440,320 L0,320 Z" opacity="0.7"/>
-        <path fill="#2C4A3B" d="M0,290 C320,240 560,320 900,280 C1180,247 1330,300 1440,278 L1440,320 L0,320 Z"/>
-      </svg>
     </section>
 
     <!-- ================= ABOUT ================= -->
     <section class="section" id="about">
       <div class="container narrow">
-        <p class="eyebrow reveal">Who We Are</p>
-        <h2 class="reveal">Loving God. Loving others.<br>Magnifying the name of Jesus.</h2>
-        <p class="lede reveal">The mission of Clarkrange Baptist Church is to love God, to love others,
+        <p class="eyebrow center reveal">Who We Are</p>
+        <h2 class="center reveal">Loving God. Loving others.<br>Magnifying the name of Jesus.</h2>
+        <div class="ornament reveal" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+        <p class="lede center reveal">The mission of Clarkrange Baptist Church is to love God, to love others,
         and to magnify the name of Jesus Christ. Our vision is to glorify our God and Savior, to make
         true disciples throughout all nations, to minister the ordinances, to edify believers, and to
         do all that is sovereignly possible and biblically permissible to magnify the name of Jesus.</p>
@@ -115,7 +114,7 @@
           </blockquote>
           <cite>John 3:16</cite>
         </div>
-        <p class="reveal">We study the Word, practice what we learn, and in the process, grow together.
+        <p class="center reveal">We study the Word, practice what we learn, and in the process, grow together.
         Our church family has been associated with the <a href="https://www.sbc.net/" rel="noopener">Southern
         Baptist Convention</a> since our founding, and our beliefs are reflected in the
         <a href="https://bfm.sbc.net/" rel="noopener">Baptist Faith &amp; Message</a>.</p>
@@ -128,6 +127,7 @@
       <div class="container">
         <p class="eyebrow center reveal">Join Us for Worship</p>
         <h2 class="center reveal">Service Times</h2>
+        <div class="ornament reveal" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></div>
         <div class="times-grid">
           <article class="time-card reveal">
             <h3>Sunday Morning</h3>
@@ -158,39 +158,67 @@
       </div>
     </section>
 
-    <!-- ================= WATCH LIVE ================= -->
-    <section class="section watch" id="watch">
+    <!-- ================= VERSE BAND: THE HEAVENS ================= -->
+    <section class="verse-band band-stars" aria-label="Scripture">
+      <div class="container narrow center">
+        <blockquote class="reveal">&ldquo;The heavens declare the glory of God; and the firmament
+        sheweth his handywork.&rdquo;</blockquote>
+        <cite class="reveal">Psalm 19:1</cite>
+      </div>
+    </section>
+
+    <!-- ================= WATCH LIVE + LATEST SERMONS ================= -->
+    <section class="section" id="watch">
       <div class="container narrow center">
         <p class="eyebrow center reveal">Can't Make It In Person?</p>
         <h2 class="center reveal">Watch Live</h2>
-        <p class="lede center reveal">Our services stream live on Facebook — Sunday at 11:00 AM,
+        <div class="ornament reveal" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+        <p class="lede center reveal">Our services stream live — Sunday at 11:00 AM,
         Sunday at 6:00 PM, and Wednesday at 6:00 PM (Central).</p>
         <div class="hero-cta center reveal">
-          <a class="btn btn-primary" href="https://www.facebook.com/clarkrangebaptist" rel="noopener">
+          <a class="btn btn-primary" data-social="facebook" href="https://www.facebook.com/clarkrangebaptist" rel="noopener">
             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.5-3.89 3.78-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg>
             Facebook Live
           </a>
-          <!-- The YouTube button appears automatically when a link is added in announcements.js -->
           <a class="btn btn-outline yt-link" href="#" rel="noopener" hidden>
             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg>
             YouTube
           </a>
         </div>
       </div>
+      <!-- Latest sermons fill in automatically from the church's YouTube channel -->
+      <div class="container" id="sermons" hidden>
+        <h3 class="sermons-title center reveal">Recent Services &amp; Sermons</h3>
+        <div class="sermons-grid" id="sermons-list"></div>
+        <p class="center reveal"><a class="btn btn-outline yt-link" href="#" rel="noopener" hidden>More on our YouTube channel</a></p>
+      </div>
     </section>
 
-    <!-- ================= ANNOUNCEMENTS ================= -->
+    <!-- ================= ANNOUNCEMENTS + FACEBOOK FEED ================= -->
     <!-- ✏️ Announcements are edited at app.pagescms.org — not here. -->
     <section class="section section-alt" id="announcements">
-      <div class="container narrow">
+      <div class="container">
         <p class="eyebrow center reveal">What's Happening</p>
-        <h2 class="center reveal">Announcements</h2>
-        <div id="announcements-list" class="announcements">
-          <noscript><p class="center">Enable JavaScript to see current announcements, or follow us on
-          <a href="https://www.facebook.com/clarkrangebaptist">Facebook</a>.</p></noscript>
+        <h2 class="center reveal">Church News</h2>
+        <div class="ornament reveal" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+        <div class="news-grid">
+          <div>
+            <h3 class="col-title reveal">Announcements</h3>
+            <div id="announcements-list" class="announcements">
+              <noscript><p>Enable JavaScript to see current announcements, or follow us on
+              <a href="https://www.facebook.com/clarkrangebaptist">Facebook</a>.</p></noscript>
+            </div>
+            <p class="note reveal">Have something for the bulletin or website? Email
+            <a href="mailto:clarkrangebc@gmail.com">clarkrangebc@gmail.com</a>.</p>
+          </div>
+          <div>
+            <h3 class="col-title reveal">Latest from Facebook</h3>
+            <div class="fb-embed reveal" id="fb-embed">
+              <p class="note">Loading our Facebook feed&hellip; if it doesn't appear,
+              <a data-social="facebook" href="https://www.facebook.com/clarkrangebaptist" rel="noopener">visit our page directly</a>.</p>
+            </div>
+          </div>
         </div>
-        <p class="center note reveal">Have something for the bulletin or website? Email
-        <a href="mailto:clarkrangebc@gmail.com">clarkrangebc@gmail.com</a>.</p>
       </div>
     </section>
 
@@ -199,6 +227,7 @@
       <div class="container">
         <p class="eyebrow center reveal">Get Involved</p>
         <h2 class="center reveal">Ministries</h2>
+        <div class="ornament reveal" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></div>
         <div class="cards-grid">
           <article class="card reveal"><h3>Sunday School</h3><p>Bible study classes for every age, from the nursery up — Sundays at 10:00 AM.</p></article>
           <article class="card reveal"><h3>Worship &amp; Choir</h3><p>Leading our church family in praise each week. New voices are always welcome in the choir.</p></article>
@@ -213,17 +242,27 @@
       </div>
     </section>
 
+    <!-- ================= VERSE BAND: THE HILLS ================= -->
+    <section class="verse-band band-mountains" aria-label="Scripture">
+      <div class="container narrow center">
+        <blockquote class="reveal">&ldquo;I will lift up mine eyes unto the hills, from whence cometh
+        my help. My help cometh from the Lord, which made heaven and earth.&rdquo;</blockquote>
+        <cite class="reveal">Psalm 121:1&ndash;2</cite>
+      </div>
+    </section>
+
     <!-- ================= LEADERSHIP ================= -->
     <!-- ✏️ EDIT STAFF HERE: each person is one <article class="person"> block. -->
     <section class="section section-alt" id="leadership">
       <div class="container">
         <p class="eyebrow center reveal">Our Shepherds &amp; Servants</p>
         <h2 class="center reveal">Leadership</h2>
+        <div class="ornament reveal" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></div>
         <p class="lede center reveal">Our leadership team recognizes the authority of God — shepherds
         who serve under the Chief Shepherd, Jesus Christ.</p>
 
         <article class="pastor-card reveal">
-          <div class="avatar avatar-lg" aria-hidden="true">DP</div>
+          <img class="portrait portrait-lg" src="images/staff/dean-patton.jpg" alt="Bro. Dean Patton, Senior Pastor">
           <div>
             <h3>Bro. Dean Patton</h3>
             <p class="role">Senior Pastor</p>
@@ -236,29 +275,29 @@
 
         <div class="people-grid">
           <article class="person reveal">
-            <div class="avatar" aria-hidden="true">DL</div>
+            <img class="portrait" src="images/staff/derek-lane.jpg" alt="Derek Lane, Worship and Music Director">
             <h3>Derek Lane</h3>
             <p class="role">Worship &amp; Music Director</p>
             <p>Leading worship at Clarkrange Baptist since 2004, with more than 20 years in music ministry.</p>
           </article>
           <article class="person reveal">
-            <div class="avatar" aria-hidden="true">CH</div>
+            <img class="portrait" src="images/staff/cody-annagrace-hull.jpg" alt="Cody and Anna Grace Hull, Youth Pastors">
             <h3>Cody &amp; Anna Grace Hull</h3>
             <p class="role">Youth Pastors</p>
             <p>Serving our young people for over seven years — helping them grow closer to Jesus while knowing they're deeply loved.</p>
           </article>
           <article class="person reveal">
-            <div class="avatar" aria-hidden="true">BW</div>
+            <img class="portrait" src="images/staff/burlinda-wright.jpg" alt="Burlinda Wright, Secretary and Treasurer">
             <h3>Burlinda Wright</h3>
             <p class="role">Secretary &amp; Treasurer</p>
           </article>
           <article class="person reveal">
-            <div class="avatar" aria-hidden="true">JG</div>
+            <img class="portrait" src="images/staff/jeff-green.jpg" alt="Jeff Green, Business Director">
             <h3>Jeff Green</h3>
             <p class="role">Business Director</p>
           </article>
           <article class="person reveal">
-            <div class="avatar" aria-hidden="true">JG</div>
+            <img class="portrait" src="images/staff/james-garrett.jpg" alt="James Garrett, Building and Grounds Director">
             <h3>James Garrett</h3>
             <p class="role">Building &amp; Grounds Director</p>
           </article>
@@ -277,6 +316,7 @@
       <div class="container">
         <p class="eyebrow center reveal">We'd Love to Meet You</p>
         <h2 class="center reveal">Plan Your Visit</h2>
+        <div class="ornament reveal" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></div>
         <div class="visit-grid">
           <div class="visit-info reveal">
             <h3>What to expect</h3>
@@ -305,15 +345,15 @@
     </section>
 
     <!-- ================= GIVE ================= -->
-    <section class="section section-green" id="give">
+    <section class="section section-navy" id="give">
       <div class="container narrow center">
         <p class="eyebrow center reveal">Generosity</p>
         <h2 class="center reveal">Giving</h2>
+        <div class="ornament ornament-gold reveal" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></div>
         <p class="lede center reveal">&ldquo;Every man according as he purposeth in his heart, so let him give;
         not grudgingly, or of necessity: for God loveth a cheerful giver.&rdquo; <cite>&mdash; 2 Corinthians 9:7</cite></p>
         <p class="center reveal">You can give in person during any service, or by mail to
         6250 S York Hwy, Clarkrange, TN 38553.</p>
-        <!-- The Give Online button appears automatically when a link is added in announcements.js -->
         <div class="hero-cta center reveal">
           <a class="btn btn-gold give-link" href="#" rel="noopener" hidden>Give Online</a>
         </div>
@@ -325,6 +365,7 @@
       <div class="container">
         <p class="eyebrow center reveal">Say Hello</p>
         <h2 class="center reveal">Contact Us</h2>
+        <div class="ornament reveal" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></div>
         <div class="contact-grid">
           <article class="card reveal">
             <h3>Church Office</h3>
@@ -371,14 +412,16 @@
       <div>
         <h3>Follow Along</h3>
         <ul class="footer-links">
-          <li><a href="https://www.facebook.com/clarkrangebaptist" rel="noopener">Facebook</a></li>
-          <li><a href="https://www.instagram.com/clarkrangebaptistchurch" rel="noopener">Instagram</a></li>
+          <li><a data-social="facebook" href="https://www.facebook.com/clarkrangebaptist" rel="noopener">Facebook</a></li>
+          <li><a data-social="instagram" href="https://www.instagram.com/clarkrangebaptistchurch" rel="noopener">Instagram</a></li>
           <li class="yt-footer" hidden><a class="yt-link" href="#" rel="noopener">YouTube</a></li>
         </ul>
       </div>
     </div>
     <div class="container footer-bottom">
       <p>&copy; <span id="year">2026</span> Clarkrange Baptist Church &middot; A Southern Baptist church on the Cumberland Plateau</p>
+      <p class="credits">Photography: National Park Service (public domain) &middot;
+      &ldquo;The Sky Is On Fire&rdquo; by <a href="https://commons.wikimedia.org/wiki/File:The_Sky_Is_On_Fire_Over_The_Blue_Ridge_Mountains_(131194559).jpeg" rel="noopener">Don Sniegowski</a> (CC BY 3.0)</p>
     </div>
   </footer>
 

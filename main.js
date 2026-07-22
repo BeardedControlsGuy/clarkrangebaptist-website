@@ -8,6 +8,13 @@ document.documentElement.classList.add("js");
 (async function () {
   "use strict";
 
+  var DEFAULTS = {
+    facebook_url: "https://www.facebook.com/clarkrangebaptist",
+    instagram_url: "https://www.instagram.com/clarkrangebaptistchurch",
+    youtube_url: "",
+    giving_url: ""
+  };
+
   /* Mobile navigation toggle */
   var toggle = document.querySelector(".nav-toggle");
   var menu = document.getElementById("nav-menu");
@@ -30,22 +37,45 @@ document.documentElement.classList.add("js");
   if (year) year.textContent = String(new Date().getFullYear());
 
   /* Load editable content (managed via Pages CMS) */
-  var announcements = [];
-  var settings = {};
-  try {
-    var r = await fetch("content/announcements.json", { cache: "no-cache" });
-    if (r.ok) {
-      var d = await r.json();
-      if (d && Array.isArray(d.items)) announcements = d.items;
-    }
-  } catch (e) { /* content unavailable — the section shows a friendly fallback */ }
-  try {
-    var r2 = await fetch("content/settings.json", { cache: "no-cache" });
-    if (r2.ok) {
-      var s = await r2.json();
-      if (s && typeof s === "object") settings = s;
-    }
-  } catch (e) { /* optional links simply stay hidden */ }
+  async function loadJSON(path) {
+    try {
+      var r = await fetch(path, { cache: "no-cache" });
+      if (r.ok) return await r.json();
+    } catch (e) { /* fall through to null */ }
+    return null;
+  }
+  var results = await Promise.all([
+    loadJSON("content/announcements.json"),
+    loadJSON("content/settings.json"),
+    loadJSON("content/latest-videos.json")
+  ]);
+  var announcements = (results[0] && Array.isArray(results[0].items)) ? results[0].items : [];
+  var settings = Object.assign({}, DEFAULTS, results[1] || {});
+  var videos = (results[2] && Array.isArray(results[2].videos)) ? results[2].videos : [];
+
+  /* Social links: any element with data-social="facebook|instagram" */
+  ["facebook", "instagram"].forEach(function (network) {
+    var url = settings[network + "_url"];
+    if (!url) return;
+    document.querySelectorAll('[data-social="' + network + '"]').forEach(function (el) {
+      el.href = url;
+    });
+  });
+
+  /* Optional YouTube + Giving links (set in the CMS "Site Links" screen) */
+  if (settings.youtube_url) {
+    document.querySelectorAll(".yt-link").forEach(function (el) {
+      el.href = settings.youtube_url;
+      el.hidden = false;
+    });
+    document.querySelectorAll(".yt-footer").forEach(function (el) { el.hidden = false; });
+  }
+  if (settings.giving_url) {
+    document.querySelectorAll(".give-link").forEach(function (el) {
+      el.href = settings.giving_url;
+      el.hidden = false;
+    });
+  }
 
   /* Render announcements */
   var list = document.getElementById("announcements-list");
@@ -84,19 +114,62 @@ document.documentElement.classList.add("js");
     }
   }
 
-  /* Optional YouTube + Giving links (set in the CMS "Site Links" screen) */
-  if (settings.youtube_url) {
-    document.querySelectorAll(".yt-link").forEach(function (el) {
-      el.href = settings.youtube_url;
-      el.hidden = false;
-    });
-    document.querySelectorAll(".yt-footer").forEach(function (el) { el.hidden = false; });
+  /* Facebook feed embed (Page Plugin — follows the CMS facebook link) */
+  var fbBox = document.getElementById("fb-embed");
+  if (fbBox && settings.facebook_url) {
+    var fbFrame = document.createElement("iframe");
+    fbFrame.title = "Clarkrange Baptist Church on Facebook";
+    fbFrame.loading = "lazy";
+    fbFrame.height = 520;
+    fbFrame.style.height = "520px";
+    fbFrame.setAttribute("allow", "encrypted-media");
+    fbFrame.src = "https://www.facebook.com/plugins/page.php" +
+      "?href=" + encodeURIComponent(settings.facebook_url) +
+      "&tabs=timeline&width=500&height=520&small_header=true" +
+      "&adapt_container_width=true&hide_cover=false&show_facepile=false";
+    fbBox.innerHTML = "";
+    fbBox.appendChild(fbFrame);
+    var fbNote = document.createElement("p");
+    fbNote.className = "note";
+    var fbLink = document.createElement("a");
+    fbLink.href = settings.facebook_url;
+    fbLink.rel = "noopener";
+    fbLink.textContent = "See more on our Facebook page";
+    fbNote.appendChild(fbLink);
+    fbBox.appendChild(fbNote);
   }
-  if (settings.giving_url) {
-    document.querySelectorAll(".give-link").forEach(function (el) {
-      el.href = settings.giving_url;
-      el.hidden = false;
+
+  /* Latest sermons from YouTube (auto-updated by GitHub Action) */
+  var sermonsWrap = document.getElementById("sermons");
+  var sermonsList = document.getElementById("sermons-list");
+  if (sermonsWrap && sermonsList && videos.length > 0) {
+    videos.slice(0, 3).forEach(function (v) {
+      var card = document.createElement("a");
+      card.className = "sermon-card reveal";
+      card.href = v.url;
+      card.rel = "noopener";
+      var img = document.createElement("img");
+      img.src = v.thumbnail;
+      img.alt = "";
+      img.loading = "lazy";
+      card.appendChild(img);
+      var body = document.createElement("span");
+      body.className = "s-body";
+      var t = document.createElement("span");
+      t.className = "s-title";
+      t.textContent = v.title;
+      body.appendChild(t);
+      if (v.published) {
+        var d = document.createElement("span");
+        d.className = "s-date";
+        var dt = new Date(v.published);
+        d.textContent = isNaN(dt) ? "" : dt.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+        body.appendChild(d);
+      }
+      card.appendChild(body);
+      sermonsList.appendChild(card);
     });
+    sermonsWrap.hidden = false;
   }
 
   /* Gentle scroll-reveal animation (runs after content is in the page) */

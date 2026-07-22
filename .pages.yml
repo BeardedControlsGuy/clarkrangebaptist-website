@@ -10,7 +10,7 @@ content:
     fields:
       - name: items
         label: Announcements
-        description: These appear in the "What's Happening" section of the website. Newest first is best.
+        description: These appear in the "Church News" section of the website. Newest first is best.
         type: object
         list: true
         fields:
@@ -34,9 +34,16 @@ content:
     type: file
     path: content/settings.json
     fields:
+      - name: facebook_url
+        label: Facebook page link
+        description: Used by the Facebook buttons AND the "Latest from Facebook" feed on the website.
+        type: string
+      - name: instagram_url
+        label: Instagram link
+        type: string
       - name: youtube_url
         label: YouTube channel link
-        description: If the church starts a YouTube channel, paste its address here — YouTube buttons appear on the site automatically. Leave empty to hide them.
+        description: Used by the YouTube buttons. New videos on this channel appear on the website automatically within a few hours.
         type: string
       - name: giving_url
         label: Online giving link
