@@ -1,10 +1,11 @@
 /* ============================================================
    Clarkrange Baptist Church — main.js
    Site behavior. You normally will NOT need to edit this file.
-   Content edits happen in announcements.js and index.html.
+   Content is edited at https://app.pagescms.org (announcements
+   and site links) or in index.html (service times, staff).
    ============================================================ */
 document.documentElement.classList.add("js");
-(function () {
+(async function () {
   "use strict";
 
   /* Mobile navigation toggle */
@@ -24,28 +25,51 @@ document.documentElement.classList.add("js");
     });
   }
 
-  /* Render announcements from announcements.js */
+  /* Footer year */
+  var year = document.getElementById("year");
+  if (year) year.textContent = String(new Date().getFullYear());
+
+  /* Load editable content (managed via Pages CMS) */
+  var announcements = [];
+  var settings = {};
+  try {
+    var r = await fetch("content/announcements.json", { cache: "no-cache" });
+    if (r.ok) {
+      var d = await r.json();
+      if (d && Array.isArray(d.items)) announcements = d.items;
+    }
+  } catch (e) { /* content unavailable — the section shows a friendly fallback */ }
+  try {
+    var r2 = await fetch("content/settings.json", { cache: "no-cache" });
+    if (r2.ok) {
+      var s = await r2.json();
+      if (s && typeof s === "object") settings = s;
+    }
+  } catch (e) { /* optional links simply stay hidden */ }
+
+  /* Render announcements */
   var list = document.getElementById("announcements-list");
   if (list) {
-    var items = (typeof ANNOUNCEMENTS !== "undefined" && Array.isArray(ANNOUNCEMENTS)) ? ANNOUNCEMENTS : [];
-    if (items.length === 0) {
+    if (announcements.length === 0) {
       var empty = document.createElement("p");
       empty.className = "empty";
       empty.textContent = "No announcements right now — check our Facebook page for the latest.";
       list.appendChild(empty);
     } else {
-      items.forEach(function (a) {
+      announcements.forEach(function (a) {
         var card = document.createElement("article");
         card.className = "announcement reveal";
-        var date = document.createElement("p");
-        date.className = "a-date";
-        date.textContent = a.date || "";
+        if (a.date) {
+          var date = document.createElement("p");
+          date.className = "a-date";
+          date.textContent = a.date;
+          card.appendChild(date);
+        }
         var title = document.createElement("h3");
         title.textContent = a.title || "";
+        card.appendChild(title);
         var text = document.createElement("p");
         text.textContent = a.text || "";
-        if (a.date) card.appendChild(date);
-        card.appendChild(title);
         card.appendChild(text);
         if (a.link) {
           var more = document.createElement("a");
@@ -60,26 +84,22 @@ document.documentElement.classList.add("js");
     }
   }
 
-  /* Optional YouTube + Giving links (set in announcements.js) */
-  if (typeof YOUTUBE_URL !== "undefined" && YOUTUBE_URL) {
+  /* Optional YouTube + Giving links (set in the CMS "Site Links" screen) */
+  if (settings.youtube_url) {
     document.querySelectorAll(".yt-link").forEach(function (el) {
-      el.href = YOUTUBE_URL;
+      el.href = settings.youtube_url;
       el.hidden = false;
     });
     document.querySelectorAll(".yt-footer").forEach(function (el) { el.hidden = false; });
   }
-  if (typeof GIVING_URL !== "undefined" && GIVING_URL) {
+  if (settings.giving_url) {
     document.querySelectorAll(".give-link").forEach(function (el) {
-      el.href = GIVING_URL;
+      el.href = settings.giving_url;
       el.hidden = false;
     });
   }
 
-  /* Footer year */
-  var year = document.getElementById("year");
-  if (year) year.textContent = String(new Date().getFullYear());
-
-  /* Gentle scroll-reveal animation */
+  /* Gentle scroll-reveal animation (runs after content is in the page) */
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var revealEls = document.querySelectorAll(".reveal");
   if (reduced || !("IntersectionObserver" in window)) {

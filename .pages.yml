@@ -1,0 +1,44 @@
+# Pages CMS configuration — powers the editing dashboard at https://app.pagescms.org
+# Editors sign in there (email magic-link invites, no GitHub account needed),
+# make changes in a form, click Save, and the live site updates in about a minute.
+media: media
+content:
+  - name: announcements
+    label: Announcements
+    type: file
+    path: content/announcements.json
+    fields:
+      - name: items
+        label: Announcements
+        description: These appear in the "What's Happening" section of the website. Newest first is best.
+        type: object
+        list: true
+        fields:
+          - name: date
+            label: When
+            description: 'For example: "July 2026", "Every Sunday", or "Starts June 3"'
+            type: string
+          - name: title
+            label: Title
+            type: string
+            required: true
+          - name: text
+            label: Details
+            type: text
+          - name: link
+            label: Optional web link
+            description: If filled in, a "Learn more" link appears on the announcement.
+            type: string
+  - name: settings
+    label: Site Links
+    type: file
+    path: content/settings.json
+    fields:
+      - name: youtube_url
+        label: YouTube channel link
+        description: If the church starts a YouTube channel, paste its address here — YouTube buttons appear on the site automatically. Leave empty to hide them.
+        type: string
+      - name: giving_url
+        label: Online giving link
+        description: Paste the church's Converge Pay giving address here — a "Give Online" button appears automatically. Leave empty to hide it.
+        type: string
