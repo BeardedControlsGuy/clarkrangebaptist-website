@@ -292,19 +292,35 @@ a:hover { color: var(--burgundy-deep); }
 .announcements .empty { color: var(--ink-soft); padding: 14px 0; }
 .announcements + .note { margin-top: 22px; }
 .social-card {
-  background:
-    radial-gradient(ellipse 120% 80% at 50% 0%, rgba(28, 43, 69, 0.05), transparent 70%),
-    var(--paper);
-  border-radius: var(--radius); box-shadow: var(--shadow);
+  background: var(--paper); border-radius: var(--radius); box-shadow: var(--shadow);
   border: 1px solid rgba(168, 134, 47, 0.3);
-  padding: 40px 34px; text-align: center;
+  overflow: hidden; height: 100%;
+  display: flex; flex-direction: column;
 }
-.social-card-icon { width: 56px; height: 56px; color: var(--navy); margin-bottom: 6px; }
-.social-card h4 { font-family: var(--font-display); font-size: 1.7rem; color: var(--navy-deep); margin-bottom: 0.4em; }
-.social-card p { color: var(--ink-soft); font-size: 1.08rem; margin-bottom: 1.4em; }
-.social-card .btn { margin-bottom: 1.2em; }
-.social-card-more { font-size: 1rem; color: var(--ink-soft); margin-bottom: 0; }
-.social-card-more a { font-weight: 600; }
+.social-card-photo { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--parchment-2); }
+.social-card-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; display: block; }
+.social-card-photo::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(20, 32, 58, 0.35));
+}
+.social-card-body { padding: 30px 32px 34px; text-align: center; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.social-card-body h4 { font-family: var(--font-display); font-size: 1.85rem; color: var(--navy-deep); margin-bottom: 0.3em; }
+.social-card-body p { color: var(--ink-soft); font-size: 1.08rem; margin-bottom: 1.5em; }
+.social-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.social-btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 11px 20px; border-radius: 999px; text-decoration: none;
+  font-family: var(--font-body); font-weight: 600; font-size: 1rem;
+  background: var(--parchment-2); color: var(--navy-deep);
+  border: 1px solid rgba(168, 134, 47, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.social-btn svg { width: 20px; height: 20px; }
+.social-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); color: #fff; }
+.social-btn.social-fb:hover { background: #1877F2; border-color: #1877F2; }
+.social-btn.social-ig:hover { background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF); border-color: transparent; }
+.social-btn.social-yt:hover { background: #FF0000; border-color: #FF0000; }
+.social-btn:focus-visible { outline: 3px solid var(--gold-bright); outline-offset: 2px; }
 
 /* ---------------- Leadership ---------------- */
 .portrait {
