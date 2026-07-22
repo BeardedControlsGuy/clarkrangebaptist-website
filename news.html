@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Archive | Clarkrange Baptist Church</title>
+  <meta name="description" content="Two years of church news, events, and celebrations at Clarkrange Baptist Church — Clarkrange, TN.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="canonical" href="https://clarkrangebaptist.org/news.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="index.html">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2v6M13 5h6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><path d="M6 29V17L16 9l10 8v12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M13 29v-7h6v7" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" fill="none"/></svg>
+        <span class="brand-text"><strong>Clarkrange</strong> Baptist Church</span>
+      </a>
+      <ul class="nav-menu" style="display:flex">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#announcements">Church News</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="section">
+      <div class="container narrow">
+        <p class="eyebrow center">Remembering God's Goodness</p>
+        <h2 class="center">News Archive</h2>
+        <div class="ornament" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+        <p class="lede center">A look back at what God has been doing at Clarkrange Baptist —
+        gathered from our church family's Facebook posts over the past two years. For what's
+        happening now, see <a href="index.html#announcements">Church News</a> or follow us on
+        <a href="https://www.facebook.com/clarkrangebaptist" rel="noopener">Facebook</a>.</p>
+        <div id="archive-list" class="announcements" style="margin-top:40px">
+          <noscript><p>Enable JavaScript to view the archive.</p></noscript>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom" style="border-top:0">
+      <p>&copy; <span id="year">2026</span> Clarkrange Baptist Church &middot; 6250 S York Hwy, Clarkrange, TN 38553</p>
+    </div>
+  </footer>
+
+  <script>
+    (async function () {
+      var year = document.getElementById("year");
+      if (year) year.textContent = String(new Date().getFullYear());
+      var list = document.getElementById("archive-list");
+      try {
+        var r = await fetch("content/news-archive.json", { cache: "no-cache" });
+        var d = await r.json();
+        (d.items || []).forEach(function (a) {
+          var card = document.createElement("article");
+          card.className = "announcement";
+          var date = document.createElement("p");
+          date.className = "a-date";
+          date.textContent = a.date || "";
+          card.appendChild(date);
+          var title = document.createElement("h3");
+          title.textContent = a.title || "";
+          card.appendChild(title);
+          var text = document.createElement("p");
+          text.textContent = a.text || "";
+          card.appendChild(text);
+          list.appendChild(card);
+        });
+      } catch (e) {
+        list.innerHTML = '<p class="empty">The archive could not be loaded — please try again later.</p>';
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -29,6 +29,27 @@ content:
             label: Optional web link
             description: If filled in, a "Learn more" link appears on the announcement.
             type: string
+  - name: news-archive
+    label: News Archive
+    type: file
+    path: content/news-archive.json
+    fields:
+      - name: items
+        label: Archive entries
+        description: Past events shown on the News Archive page (newest first).
+        type: object
+        list: true
+        fields:
+          - name: date
+            label: When
+            type: string
+          - name: title
+            label: Title
+            type: string
+            required: true
+          - name: text
+            label: Details
+            type: text
   - name: settings
     label: Site Links
     type: file
