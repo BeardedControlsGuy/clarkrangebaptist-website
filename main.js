@@ -68,7 +68,7 @@ document.documentElement.classList.add("js");
       el.href = settings.youtube_url;
       el.hidden = false;
     });
-    document.querySelectorAll(".yt-footer").forEach(function (el) { el.hidden = false; });
+    document.querySelectorAll(".yt-footer, .yt-inline").forEach(function (el) { el.hidden = false; });
   }
   if (settings.giving_url) {
     document.querySelectorAll(".give-link").forEach(function (el) {
@@ -112,31 +112,6 @@ document.documentElement.classList.add("js");
         list.appendChild(card);
       });
     }
-  }
-
-  /* Facebook feed embed (Page Plugin — follows the CMS facebook link) */
-  var fbBox = document.getElementById("fb-embed");
-  if (fbBox && settings.facebook_url) {
-    var fbFrame = document.createElement("iframe");
-    fbFrame.title = "Clarkrange Baptist Church on Facebook";
-    fbFrame.loading = "lazy";
-    fbFrame.height = 520;
-    fbFrame.style.height = "520px";
-    fbFrame.setAttribute("allow", "encrypted-media");
-    fbFrame.src = "https://www.facebook.com/plugins/page.php" +
-      "?href=" + encodeURIComponent(settings.facebook_url) +
-      "&tabs=timeline&width=500&height=520&small_header=true" +
-      "&adapt_container_width=true&hide_cover=false&show_facepile=false";
-    fbBox.innerHTML = "";
-    fbBox.appendChild(fbFrame);
-    var fbNote = document.createElement("p");
-    fbNote.className = "note";
-    var fbLink = document.createElement("a");
-    fbLink.href = settings.facebook_url;
-    fbLink.rel = "noopener";
-    fbLink.textContent = "See more on our Facebook page";
-    fbNote.appendChild(fbLink);
-    fbBox.appendChild(fbNote);
   }
 
   /* Latest sermons from YouTube (auto-updated by GitHub Action) */
