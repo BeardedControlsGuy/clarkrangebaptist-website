@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://clarkrangebaptist.org/sitemap.xml
